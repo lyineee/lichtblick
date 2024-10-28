@@ -5,9 +5,9 @@
 // License, v2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/
 
-// Generic global translation
-export const general = {
-  foxglove: "Foxglove",
-  learnMore: "Learn more",
-  addVariable: "Add variable",
+export const incompatibleLayoutVersion = {
+  desktopText:
+    "此布局是使用较新版本的 Lichtblick 创建的。如需更新到最新版本，请访问 ",
+  title: "不兼容的布局版本",
+  webText: "此布局是使用较新版本的 Lichtblick 创建的。请刷新您的浏览器。",
 };

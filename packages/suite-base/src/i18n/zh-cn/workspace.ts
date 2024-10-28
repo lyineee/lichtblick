@@ -7,16 +7,16 @@
 
 export const workspace = {
   events: "Events",
-  panel: "Panel",
-  performance: "Performance",
-  problems: "Problems",
-  studioLogs: "Logs",
-  topics: "Topics",
-  variables: "Variables",
-  layouts: "Layouts",
+  panel: "面板",
+  performance: "性能",
+  problems: "问题",
+  studioLogs: "日志",
+  topics: "话题",
+  variables: "变量",
+  layouts: "布局",
 
-  // layouts
-  layoutEmptyText: "Add a new layout to get started with Lichtblick!",
-  createNewLayout: "Create new layout",
-  importLayout: "Import from file…",
+  // layout
+  layoutEmptyText: "创建一个新的布局配置来使用Lichtblick!",
+  createNewLayout: "创建新布局",
+  importLayout: "从文件导入...",
 };

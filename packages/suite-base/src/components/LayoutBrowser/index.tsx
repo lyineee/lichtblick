@@ -18,6 +18,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import * as _ from "lodash-es";
+import { useTranslation } from "react-i18next";
 import moment from "moment";
 import { useSnackbar } from "notistack";
 import path from "path";
@@ -77,6 +78,7 @@ export default function LayoutBrowser({
   const isMounted = useMountedState();
   const { enqueueSnackbar } = useSnackbar();
   const layoutManager = useLayoutManager();
+  const { t } = useTranslation("workspace");
   const [prompt, promptModal] = usePrompt();
   const analytics = useAnalytics();
   const [confirm, confirmModal] = useConfirm();
@@ -592,12 +594,12 @@ export default function LayoutBrowser({
             <List className={classes.actionList} disablePadding>
               <ListItem disablePadding>
                 <ListItemButton onClick={createNewLayout}>
-                  <ListItemText disableTypography>Create new layout</ListItemText>
+                  <ListItemText disableTypography>{t("createNewLayout")}</ListItemText>
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
                 <ListItemButton onClick={importLayout}>
-                  <ListItemText disableTypography>Import from file…</ListItemText>
+                  <ListItemText disableTypography>{t("importLayout")}</ListItemText>
                 </ListItemButton>
               </ListItem>
             </List>
@@ -607,7 +609,7 @@ export default function LayoutBrowser({
         <LayoutSection
           disablePadding={enableNewTopNav}
           title={layoutManager.supportsSharing ? "Personal" : undefined}
-          emptyText="Add a new layout to get started with Lichtblick!"
+          emptyText={t("layoutEmptyText")}
           items={layouts.value?.personal}
           anySelectedModifiedLayouts={anySelectedModifiedLayouts}
           multiSelectedIds={state.selectedIds}

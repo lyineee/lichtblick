@@ -8,6 +8,7 @@
 import { Button } from "@mui/material";
 import * as _ from "lodash-es";
 import { useMemo, useRef, useState, ReactElement, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 import Stack from "@lichtblick/suite-base/components/Stack";
 import { useAnalytics } from "@lichtblick/suite-base/context/AnalyticsContext";
@@ -23,6 +24,7 @@ const ANIMATION_RESET_DELAY_MS = 1500;
 export default function VariablesList(): ReactElement {
   const { globalVariables, setGlobalVariables } = useGlobalVariables();
   const globalVariableNames = useMemo(() => Object.keys(globalVariables), [globalVariables]);
+  const { t } = useTranslation("general");
 
   // Don't run the animation when the sidebar first renders
   const skipAnimation = useRef<boolean>(true);
@@ -85,7 +87,7 @@ export default function VariablesList(): ReactElement {
             void analytics.logEvent(AppEvent.VARIABLE_ADD);
           }}
         >
-          Add variable
+          {t("addVariable")}
         </Button>
       </Stack>
     </Stack>

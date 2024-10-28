@@ -5,9 +5,10 @@
 // License, v2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/
 
-// Generic global translation
-export const general = {
-  foxglove: "Foxglove",
-  learnMore: "Learn more",
-  addVariable: "Add variable",
+export const stateTransitions = {
+  max: "最大值",
+  maxXError: "X 最大值必须大于 X 最小值。",
+  min: "最小值",
+  secondsRange: "范围（秒）",
+  xAxis: "X 轴",
 };

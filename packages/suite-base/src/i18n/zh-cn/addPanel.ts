@@ -5,9 +5,10 @@
 // License, v2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/
 
-// Generic global translation
-export const general = {
-  foxglove: "Foxglove",
-  learnMore: "Learn more",
-  addVariable: "Add variable",
+export const addPanel = {
+  addPanel: "添加面板",
+  noLayoutSelected: "<selectLayoutLink>选择一个布局</selectLayoutLink>以开始！",
+  noPanelsMatchSearchCriteria: "没有面板符合搜索条件。",
+  searchPanels: "搜索面板",
+  selectPanelToAddToLayout: "选择下面的面板将其添加到您的布局中。",
 };

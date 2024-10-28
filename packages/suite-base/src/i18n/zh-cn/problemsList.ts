@@ -5,9 +5,7 @@
 // License, v2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/
 
-// Generic global translation
-export const general = {
-  foxglove: "Foxglove",
-  learnMore: "Learn more",
-  addVariable: "Add variable",
+export const problemsList = {
+  noDetailsProvided: "未提供详细信息",
+  noProblemsFound: "未找到问题",
 };

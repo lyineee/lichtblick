@@ -10,14 +10,17 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
 import * as en from "./en";
+import * as zh_cn from "./zh-cn";
 
-export const translations = { en };
+export const translations = { "en": en, "zh_cn": zh_cn };
 
 export type Language = keyof typeof translations;
 
 export const defaultNS = "general";
 
-export async function initI18n(options?: { context?: "browser" | "electron-main" }): Promise<void> {
+export async function initI18n(
+  options?: { context?: "browser" | "electron-main" },
+): Promise<void> {
   const { context = "browser" } = options ?? {};
   if (context === "browser") {
     i18n.use(initReactI18next);
@@ -25,10 +28,9 @@ export async function initI18n(options?: { context?: "browser" | "electron-main"
   }
   await i18n.init({
     resources: translations,
-    detection:
-      context === "browser"
-        ? { order: ["localStorage", "navigator"], caches: ["localStorage"] }
-        : undefined,
+    detection: context === "browser"
+      ? { order: ["localStorage", "navigator"], caches: ["localStorage"] }
+      : undefined,
     fallbackLng: "en",
     defaultNS,
     interpolation: {

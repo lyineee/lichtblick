@@ -5,9 +5,14 @@
 // License, v2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/
 
-// Generic global translation
-export const general = {
-  foxglove: "Foxglove",
-  learnMore: "Learn more",
-  addVariable: "Add variable",
+export const desktopWindow = {
+  advanced: "高级",
+  checkForUpdates: "检查更新…",
+  edit: "编辑",
+  file: "文件",
+  inspectSharedWorker: "检查共享Worker…",
+  newWindow: "新窗口",
+  noSharedWorkers: "没有共享Worker",
+  settings: "设置…",
+  view: "视图",
 };

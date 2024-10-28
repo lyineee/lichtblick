@@ -8,6 +8,6 @@
 // Generic global translation
 export const general = {
   foxglove: "Foxglove",
-  learnMore: "Learn more",
-  addVariable: "Add variable",
+  learnMore: "了解更多",
+  addVariable: "添加变量",
 };
