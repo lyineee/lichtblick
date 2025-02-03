@@ -44,7 +44,8 @@ import Panel from "@lichtblick/suite-base/components/Panel";
 import PanelToolbar from "@lichtblick/suite-base/components/PanelToolbar";
 import Stack from "@lichtblick/suite-base/components/Stack";
 import { PLAYER_CAPABILITIES } from "@lichtblick/suite-base/players/constants";
-
+import { FilterTagInput } from "@lichtblick/suite-base/panels/Log/FilterTagInput"
+import { SaveConfig } from "@lichtblick/suite-base/types/panels";
 // The minimum amount of time to wait between showing the parameter update animation again
 const ANIMATION_RESET_DELAY_MS = 3000;
 
@@ -172,13 +173,46 @@ function SubmittableJsonInput(props: {
   );
 }
 
-function Parameters(): ReactElement {
+type FilterBarProps = {
+  searchTerms: Set<string>;
+  onFilterChange: (filter: { searchTerms: string[] }) => void;
+};
+
+function FilterBar(props: FilterBarProps): React.JSX.Element {
+  return (
+    <FilterTagInput
+      items={[...props.searchTerms]}
+      suggestions={[]}
+      onChange={(items: string[]) => {
+        props.onFilterChange({
+          searchTerms: items,
+        });
+      }}
+    />
+  );
+}
+
+type Config = {
+  title: string,
+  searchTerms: string[];
+};
+
+type Props = {
+  config: Config;
+  saveConfig: SaveConfig<Config>;
+}
+
+function Parameters({ config, saveConfig }: Props): ReactElement {
   const { classes } = useStyles();
 
   const capabilities = useMessagePipeline(selectCapabilities);
   const setParameterUnbounced = useMessagePipeline(selectSetParameter);
   const parameters = useMessagePipeline(selectParameters);
-
+  const searchTermsSet = useMemo(() => new Set<string>(config.searchTerms), [config.searchTerms])
+  const onFilterChange = useCallback<FilterBarProps["onFilterChange"]>(
+    (filter) => {
+      saveConfig({ searchTerms: filter.searchTerms })
+    }, [saveConfig])
   const setParameter = useDebouncedCallback(
     useCallback(
       (name: string, value: ParameterValue) => {
@@ -194,7 +228,10 @@ function Parameters(): ReactElement {
   const canGetParams = capabilities.includes(PLAYER_CAPABILITIES.getParameters);
   const canSetParams = capabilities.includes(PLAYER_CAPABILITIES.setParameters);
 
-  const parameterNames = useMemo(() => Array.from(parameters.keys()), [parameters]);
+  const parameterNames = useMemo(() =>
+    searchTermsSet.size == 0 ? Array.from(parameters.keys()) :
+      Array.from(parameters.keys()).filter(f => Array.from(searchTermsSet).some(char => f.includes(char)))
+    , [parameters, searchTermsSet]);
 
   // Don't run the animation when the Table first renders
   const skipAnimation = useRef<boolean>(true);
@@ -242,6 +279,12 @@ function Parameters(): ReactElement {
   return (
     <Stack fullHeight>
       <PanelToolbar />
+      <Stack flexGrow={0} padding={0.5}>
+        <FilterBar
+          searchTerms={searchTermsSet}
+          onFilterChange={onFilterChange}
+        />
+      </Stack>
       <TableContainer style={{ flex: 1 }}>
         <Table size="small">
           <TableHead>
